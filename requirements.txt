@@ -1,0 +1,10 @@
+# -------------------------------------
+# Plan It
+# Web Service
+# 'requirements.txt'
+# Contact: planit.app.dev@gmail.com
+# -------------------------------------
+
+Flask
+Flask-Sessionstore
+pymongo
