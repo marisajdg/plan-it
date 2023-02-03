@@ -6,12 +6,12 @@
 # -------------------------------------
 
 from werkzeug.security import check_password_hash
-from . import authentication_utilities as auth
+from database.database import database
 import constants
 
 def password_matches(email: str, password: str) -> bool:
 
-    user = auth.get_user_by_email(email) 
+    user = database.get_user_by_email(email) 
 
     hashed_password = user[constants.PASSWORD]
 

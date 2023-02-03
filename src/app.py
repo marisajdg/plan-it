@@ -15,12 +15,12 @@ import os
 app = Flask(__name__)
 
 app.config[constants.SECRET_KEY] = str(os.getenv(constants.SECRET_KEY))
-app.config[constants.SESSION_TYPE] = 'mongodb'
+app.config[constants.SESSION_TYPE] = constants.MONGO_DB
 app.config[constants.SESSION_MONGODB] = database_client
 app.config[constants.SESSION_MONGODB_DB] = str(os.getenv(constants.DB_NAME))
 app.config[constants.SESSION_MONGODB_COLLECT] = constants.DB_SESSIONS_COLLECTION
 app.config[constants.PERMANENT_SESSION_LIFETIME] = timedelta(days=constants.SESSION_LIFETIME_DAYS)
-app.config[constants.SESSION_USE_SIGNER] = True
+app.config[constants.SESSION_USE_SIGNER] = constants.SESSION_USE_SIGNER_VALUE
 
 server_session = Session(app)
 

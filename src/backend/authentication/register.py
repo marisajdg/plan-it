@@ -5,9 +5,10 @@
 # Contact: planit.app.dev@gmail.com
 # -------------------------------------
 
-from database.database_connection import database
+from database.database import database
 from werkzeug.security import generate_password_hash
 import constants
+import models
 import uuid
 import re
 
@@ -53,13 +54,11 @@ def register_user(username: str, email: str, password: str):
 
     hashed_password = generate_password_hash(password=password)
 
-    user = {
-        constants.USER_ID: str(uuid.uuid4()),
-        constants.USERNAME: username,
-        constants.EMAIL: email,
-        constants.PASSWORD: hashed_password
-    }
+    user = models.User(user_id=str(uuid.uuid4()),
+                username=username,
+                email=email,
+                password=hashed_password)
 
-    users_collection = database[constants.DB_USERS_COLLECTION]
-    users_collection.insert_one(user)
+    database.insert_user(user)
+        
     

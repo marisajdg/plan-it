@@ -17,4 +17,3 @@ load_dotenv(dotenv_path=env_path)
 
 # Database connection
 database_client = pymongo.MongoClient(str(os.getenv(constants.DB_CONNECTION_URI)))
-database = database_client[str(os.getenv(constants.DB_NAME))]

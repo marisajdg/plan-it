@@ -9,3 +9,4 @@ Flask
 Flask-Sessionstore
 pymongo
 python-dotenv
+marshmallow
