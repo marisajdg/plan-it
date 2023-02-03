@@ -1,3 +1,3 @@
-# plan-it
+# Plan It Web Service 🌠
 
-te amo!!!!!!
+Plan It Web Service repository.

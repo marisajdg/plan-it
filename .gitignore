@@ -1,0 +1,12 @@
+# -------------------------------------
+# Plan It
+# Web Service
+# '.gitignore'
+# Contact: planit.app.dev@gmail.com
+# -------------------------------------
+
+# Exclude .env file
+.env
+
+# Exclude Virtual Environment directory
+venv/
