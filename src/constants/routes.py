@@ -1,11 +1,10 @@
 # -------------------------------------
 # Plan It
 # Web Service
-# 'requirements.txt'
+# 'literals.py'
 # Contact: planit.app.dev@gmail.com
 # -------------------------------------
 
-Flask
-Flask-Sessionstore
-pymongo
-python-dotenv
+# Routes Constants
+REGISTER_ENDPOINT = "/backend-api/register"
+LOGIN_ENDPOINT = "/backend-api/login"
