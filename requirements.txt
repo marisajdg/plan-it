@@ -10,3 +10,4 @@ Flask-Sessionstore
 pymongo
 python-dotenv
 marshmallow
+flask-cors

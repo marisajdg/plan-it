@@ -7,11 +7,13 @@
 
 from flask import Flask
 from flask_sessionstore import Session
+from flask_cors import CORS
 from server_configuration import ServerConfiguration
 import constants
 
 app = Flask(__name__)
 
+cors = CORS(app, resources={r"/*": {constants.Configuration.ORIGINS: constants.Configuration.ALLOWED_FRONTEND_BROWSER_ORIGIN}})
 app.config.from_object(ServerConfiguration)
 server_session = Session(app)
 

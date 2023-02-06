@@ -8,5 +8,5 @@
 # Routes Constants
 class Routes:
 
-    REGISTER_ENDPOINT = "/backend-api/register"
-    LOGIN_ENDPOINT = "/backend-api/login"
+    REGISTER_ENDPOINT = "/register"
+    LOGIN_ENDPOINT = "/login"
