@@ -6,5 +6,7 @@
 # -------------------------------------
 
 # Routes Constants
-REGISTER_ENDPOINT = "/backend-api/register"
-LOGIN_ENDPOINT = "/backend-api/login"
+class Routes:
+
+    REGISTER_ENDPOINT = "/backend-api/register"
+    LOGIN_ENDPOINT = "/backend-api/login"

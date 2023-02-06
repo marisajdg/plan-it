@@ -6,7 +6,7 @@
 # -------------------------------------
 
 from flask import session
-from database.database import database
+from database.database import Database
 from functools import wraps
 import constants
 
