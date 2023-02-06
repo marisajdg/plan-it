@@ -18,30 +18,85 @@ class Database:
     database_lists_collection = database_client[constants.Configuration.DB_NAME][constants.Configuration.DB_LISTS_COLLECTION]
     database_places_collection = database_client[constants.Configuration.DB_NAME][constants.Configuration.DB_PLACES_COLLECTION]        
 
+
+    '''
+    p1: user: User object to add to the Database
+    return: Boolean indicating the status of the operation; True if the operation was succesful, False otherwise
+    '''
     @classmethod
-    def insert_user(cls, user: models.User):
+    def insert_user(cls, user: models.User) -> bool:
 
-        user_schema = models.UserSchema()
-        result = user_schema.dump(user)
+        try:
 
-        cls.database_users_collection.insert_one(result)
+            user_schema = models.UserSchema()
+            user_json = user_schema.dump(user)
+            
+            return cls.database_users_collection.insert_one(user_json).acknowledged
+
+        except:
+
+            return False
+
+
+    '''
+    p1: email: Email to look for in the Database
+    return: User object if found, None otherwise
+    '''
+    @classmethod
+    def get_user_by_email(cls, email: str) -> models.User:
+
+        try:
+
+            user_json = cls.database_users_collection.find_one( { constants.Text.EMAIL: email } )
+            if(user_json == None): return None
+
+            user_json.pop(constants.Text.OBJECT_ID)
+
+            user_schema = models.UserSchema()
+            return user_schema.load(user_json)
+
+        except:
+
+            return None
+
+
+    '''
+    p1: user_id: User ID to look for in the Database
+    return: User object if found, None otherwise
+    '''
+    @classmethod
+    def get_user_by_user_id(cls, user_id: str) -> models.User:
+
+        try:
+
+            user_json = cls.database_users_collection.find_one( { constants.Text.USER_ID: user_id } )
+            if(user_json == None): return None
+
+            user_json.pop(constants.Text.OBJECT_ID)
+
+            user_schema = models.UserSchema()
+            return user_schema.load(user_json)
+
+        except:
+
+            return None
     
+
+    '''
+    p1: username: Username to look for in the Database
+    return: Boolean indicating the status of the operation; True if exists, False otherwise
+    '''
     @classmethod
     def username_exists(cls, username: str) -> bool:
 
         return cls.database_users_collection.find_one( { constants.Text.USERNAME: username } ) != None
 
+
+    '''
+    p1: email: Email to look for in the Database
+    return: Boolean indicating the status of the operation; True if exists, False otherwise
+    '''
     @classmethod
     def email_exists(cls, email: str) -> bool:
 
         return cls.database_users_collection.find_one( { constants.Text.EMAIL: email } ) != None
-
-    @classmethod
-    def get_user_by_email(cls, email: str):
-
-        return cls.database_users_collection.find_one( { constants.Text.EMAIL: email } )
-
-    @classmethod
-    def get_user_by_user_id(cls, user_id: str):
-
-        return cls.database_users_collection.find_one( { constants.Text.USER_ID: user_id } )

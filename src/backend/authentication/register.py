@@ -50,7 +50,7 @@ def valid_password(password) -> bool:
     # 'password' is acceptable
     return True
 
-def register_user(username: str, email: str, password: str):
+def register_user(username: str, email: str, password: str) -> bool:
 
     hashed_password = generate_password_hash(password=password)
 
@@ -59,6 +59,6 @@ def register_user(username: str, email: str, password: str):
                        email=email,
                        password=hashed_password)
 
-    Database.insert_user(user)
+    return Database.insert_user(user)
         
     

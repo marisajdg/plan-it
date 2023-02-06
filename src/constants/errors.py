@@ -20,4 +20,5 @@ class Errors:
     ERROR_EMAIL_PASSWORD_INCORRECT = "email-or-password-incorrect"
     ERROR_LOGIN = "login-error"
     ERROR_USER_NOT_AUTHENTICATED = "user-not-authenticated"
+    ERROR_USER_NOT_FOUND = 'user-not-found'
  

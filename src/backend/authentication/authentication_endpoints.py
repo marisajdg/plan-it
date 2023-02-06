@@ -12,6 +12,7 @@ from database.database import Database
 from . import register
 from . import login
 import constants
+import models
 
 # Register User Endpoint
 @app.put(constants.Routes.REGISTER_ENDPOINT)
@@ -61,17 +62,27 @@ def register_user():
             constants.Errors.ERROR_MESSAGE: constants.Errors.ERROR_EMAIL_EXISTS
         }, constants.HttpCodes.HTTP_CONFLICT_CODE
 
-    register.register_user(username, email, password)
+    if(not register.register_user(username, email, password)):
+        return {
+            constants.Errors.ERROR_MESSAGE: constants.Errors.ERROR_REGISTER
+        }, constants.HttpCodes.HTTP_INTERNAL_ERROR_CODE
 
     user = Database.get_user_by_email(email)
 
-    session[constants.Text.USER_ID] = user[constants.Text.USER_ID]
+    if(user == None):
+        return {
+            constants.Errors.ERROR_MESSAGE: constants.Errors.ERROR_USER_NOT_FOUND
+        }, constants.HttpCodes.HTTP_NOT_FOUND_CODE
 
-    user.pop(constants.Text.OBJECT_ID)
-    user.pop(constants.Text.USER_ID)
-    user.pop(constants.Text.PASSWORD)
+    session[constants.Text.USER_ID] = user.user_id
 
-    return dumps(user), constants.HttpCodes.HTTP_CREATED_CODE
+    user_schema = models.UserSchema()
+    user_json = user_schema.dump(user)
+
+    user_json.pop(constants.Text.USER_ID)
+    user_json.pop(constants.Text.PASSWORD)
+
+    return dumps(user_json), constants.HttpCodes.HTTP_CREATED_CODE
 
 #except:
 
@@ -108,13 +119,20 @@ def login_user():
 
     user = Database.get_user_by_email(email)
 
-    session[constants.Text.USER_ID] = user[constants.Text.USER_ID]
+    if(user == None):
+        return {
+            constants.Errors.ERROR_MESSAGE: constants.Errors.ERROR_USER_NOT_FOUND
+        }, constants.HttpCodes.HTTP_NOT_FOUND_CODE
 
-    user.pop(constants.Text.OBJECT_ID)
-    user.pop(constants.Text.USER_ID)
-    user.pop(constants.Text.PASSWORD)
+    session[constants.Text.USER_ID] = user.user_id
 
-    return dumps(user), constants.HttpCodes.HTTP_OK_CODE
+    user_schema = models.UserSchema()
+    user_json = user_schema.dump(user)
+
+    user_json.pop(constants.Text.USER_ID)
+    user_json.pop(constants.Text.PASSWORD)
+
+    return dumps(user_json), constants.HttpCodes.HTTP_OK_CODE
 
 #except:
 

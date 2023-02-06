@@ -7,7 +7,8 @@
 
 Flask
 Flask-Sessionstore
+flask-cors
 pymongo
 python-dotenv
 marshmallow
-flask-cors
+pyclean

@@ -10,13 +10,13 @@ import datetime as dt
 
 class User():
 
-    def __init__(self, user_id: str, username: str, email: str, password: str):
+    def __init__(self, user_id: str, username: str, email: str, password: str, created_time: str = str(dt.datetime.now())):
 
         self.user_id = user_id
         self.username = username
         self.email = email
         self.password = password
-        self.created_time = str(dt.datetime.now())
+        self.created_time = created_time
 
 class UserSchema(Schema):
 

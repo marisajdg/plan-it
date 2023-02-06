@@ -13,6 +13,6 @@ def password_matches(email: str, password: str) -> bool:
 
     user = Database.get_user_by_email(email) 
 
-    hashed_password = user[constants.Text.PASSWORD]
+    hashed_password = user.password
 
     return check_password_hash(pwhash=hashed_password, password=password)
