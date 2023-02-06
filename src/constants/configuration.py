@@ -15,7 +15,7 @@ class Configuration:
     SESSION_USE_SIGNER = True
     SERVER_DEBUG_ENABLED = True
     ORIGINS = 'origins'
-    ALLOWED_FRONTEND_BROWSER_ORIGIN = 'http://127.0.0.1:3000'
+    ALLOWED_FRONTEND_BROWSER_ORIGIN = 'http://localhost:3000'
     DB_CONNECTION_URI = 'DB_CONNECTION_URI'
     DB_NAME = 'DB_NAME'
     DB_SESSIONS_COLLECTION = 'sessions'
