@@ -5,7 +5,9 @@
 # Contact: planit.app.dev@gmail.com
 # -------------------------------------
 
-from .http_status_codes import *
-from .configuration import *
-from .literals import *
-from .text import *
+from .http_status_codes import HttpCodes
+from .configuration import Configuration
+from .numerics import Numerics
+from .routes import Routes
+from .errors import Errors
+from .text import Text

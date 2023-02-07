@@ -1,14 +1,12 @@
 # -------------------------------------
 # Plan It
 # Web Service
-# 'requirements.txt'
+# 'literals.py'
 # Contact: planit.app.dev@gmail.com
 # -------------------------------------
 
-Flask
-Flask-Sessionstore
-flask-cors
-pymongo
-python-dotenv
-marshmallow
-pyclean
+# Routes Constants
+class Routes:
+
+    REGISTER_ENDPOINT = "/register"
+    LOGIN_ENDPOINT = "/login"

@@ -1,14 +1,8 @@
 # -------------------------------------
 # Plan It
 # Web Service
-# 'requirements.txt'
+# '__init__.py'
 # Contact: planit.app.dev@gmail.com
 # -------------------------------------
 
-Flask
-Flask-Sessionstore
-flask-cors
-pymongo
-python-dotenv
-marshmallow
-pyclean
+from .user_model import User, UserSchema
